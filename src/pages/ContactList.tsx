@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../components/common/Button";
+import EmptyData from "../components/EmptyData";
 import { deleteUser } from "../redux/userSlice";
 
 const ContactList = () => {
@@ -74,14 +75,12 @@ const ContactList = () => {
     <>
 
       <div>
-        <Button onClick={onAddClick}>Add User</Button>
+        <Button onClick={onAddClick} >Create Contact +</Button>
         <div className="grid gap-5 md:grid-cols-2">
           {users.length ? (
             renderCard()
           ) : (
-            <p className="text-center col-span-2 text-gray-700 font-semibold">
-              No User
-            </p>
+            <EmptyData />
           )}
         </div>
       </div>
