@@ -1,7 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+This is a contact management app with Charts and Maps using ReactJS, TypeScript, TailwindCSS, and React Router v6.
 ## Available Scripts
 
 In the project directory, you can run:
@@ -39,8 +40,14 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Contact List: View, add, edit, and delete contacts.
+- Charts: Visualize COVID-19 cases fluctuations with line graphs.
+- Feature 3
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Technologies Used
+- ReactJS: JavaScript library for building user interfaces.
+- TypeScript: Adds static typing to JavaScript for better tooling and developer    experience.
+- TailwindCSS: Utility-first CSS framework for rapid UI development.
+- React Router v6: Declarative routing for React applications.
