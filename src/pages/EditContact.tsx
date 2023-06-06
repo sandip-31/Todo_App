@@ -74,7 +74,7 @@ const EditContact = () => {
             <span className="ml-2">Inactive</span>
           </label>
         </div>
-        <Button onClick={handleEditUser}>Edit</Button>
+        <Button onClick={handleEditUser}>Save</Button>
         <Button onClick={cancelEditContact}>Cancel</Button>
 
       </div>
