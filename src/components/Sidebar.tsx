@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 const sidebar = () => {
   const Menus = [
-    { title: "Contact", path: "/" },
-    { title: "Graph", path: "/graph" },
+    { title: "Dashboard", path: "/dashboard", clickHandler: () =>{}},
+    { title: "logout", path: "/", clickHandler: () =>{ localStorage
+    .clear() }},
+
+    
   ];
 
   return (
@@ -16,7 +19,7 @@ const sidebar = () => {
           <h1
             className={`text-white origin-left font-medium text-xl duration-200 `}
           >
-            Contact Managment App
+            Todo App
           </h1>
         </div>
         <ul className="pt-6">
@@ -25,6 +28,7 @@ const sidebar = () => {
               key={index}
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
             `}
+            onClick={Menu.clickHandler}
             >
               <span className={` origin-left duration-200`}>{Menu.title}</span>
             </Link >
