@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
+import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -12,7 +13,14 @@ const Home = () => {
     }
   }, [navigate]);
 
-  return <Dashboard />;
+  return (
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-grow p-4">
+        <Dashboard />
+      </div>
+    </div>
+  );
 };
 
 export default Home;
