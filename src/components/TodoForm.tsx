@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface TodoFormProps {
   onClose: () => void;
@@ -6,95 +6,106 @@ interface TodoFormProps {
 }
 
 const TodoForm: React.FC<TodoFormProps> = ({ onClose, onAddTodo }) => {
-  const [title, setTitle] = useState('');
-  const [subtasks, setSubtasks] = useState<string[]>(['']);
+  const [title, setTitle] = useState("");
+  const [subtasks, setSubtasks] = useState<string[]>([]);
 
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
   };
 
-  const handleSubtaskChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
-    const updatedSubtasks = [...subtasks];
-    updatedSubtasks[index] = event.target.value;
-    setSubtasks(updatedSubtasks);
+  const handleSubtaskChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const value = e.target.value;
+
+    setSubtasks((prevSubtasks) => {
+      const updatedSubtasks = [...prevSubtasks];
+      updatedSubtasks[index] = value;
+      return updatedSubtasks;
+    });
   };
 
-  const addSubtask = () => {
-    setSubtasks([...subtasks, '']);
+  const handleAddSubtask = () => {
+    setSubtasks((prevSubtasks) => [...prevSubtasks, ""]);
   };
 
-  const removeSubtask = (index: number) => {
-    const updatedSubtasks = [...subtasks];
-    updatedSubtasks.splice(index, 1);
-    setSubtasks(updatedSubtasks);
+  const handleRemoveSubtask = (index: number) => {
+    setSubtasks((prevSubtasks) => prevSubtasks.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    onAddTodo(title, subtasks.filter(subtask => subtask !== ''));
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onAddTodo?.(title, subtasks);
+    onClose?.();
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-200">
-      <div className="max-w-lg bg-white p-6 rounded shadow-md w-full">
-        <h1 className="text-2xl mb-4">Todo Component</h1>
-
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="title" className="block mb-2">
-              Title:
-            </label>
-            <input
-              type="text"
-              id="title"
-              className="w-full border border-gray-300 p-2 rounded"
-              value={title}
-              onChange={handleTitleChange}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block mb-2">Subtasks:</label>
-            {subtasks.map((subtask, index) => (
-              <div key={index} className="flex mb-2">
-                <input
-                  type="text"
-                  className="w-full border border-gray-300 p-2 rounded"
-                  value={subtask}
-                  onChange={event => handleSubtaskChange(index, event)}
-                />
-                {index > 0 && (
-                  <button
-                    type="button"
-                    className="ml-2 bg-red-500 hover:bg-red-600 text-white rounded p-2"
-                    onClick={() => removeSubtask(index)}
-                  >
-                    Remove
-                  </button>
-                )}
-              </div>
-            ))}
-            <button
-              type="button"
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded p-2"
-              onClick={addSubtask}
-            >
-              Add Subtask
-            </button>
-          </div>
-
-          <button type="submit" className="bg-green-500 hover:bg-green-600 text-white rounded p-2">
-            Add Task
-          </button>
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <form
+        className="max-w-md p-6 bg-gray-100 rounded-lg shadow-md"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="text-xl font-semibold mb-4">Add Task</h2>
+        <div className="mb-4">
+          <label htmlFor="title" className="block text-sm font-medium">
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            className="w-full border-gray-300 rounded-md shadow-sm"
+            value={title}
+            onChange={handleTitleChange}
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="subtasks" className="block text-sm font-medium">
+            Subtasks
+          </label>
+          {subtasks.map((subtask, index) => (
+            <div key={index} className="flex mb-2">
+              <input
+                type="text"
+                className="flex-1 border-gray-300 rounded-md shadow-sm mr-2"
+                value={subtask}
+                onChange={(e) => handleSubtaskChange(e, index)}
+                required
+              />
+              <button
+                type="button"
+                className="bg-red-500 hover:bg-red-600 text-white rounded p-2"
+                onClick={() => handleRemoveSubtask(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
           <button
             type="button"
-            className="bg-gray-500 hover:bg-gray-600 text-white rounded p-2 ml-2"
+            className="bg-green-500 hover:bg-green-600 text-white rounded p-2 mt-2"
+            onClick={handleAddSubtask}
+          >
+            Add Subtask
+          </button>
+        </div>
+        <div className="flex justify-end">
+          <button
+            type="button"
+            className="bg-gray-500 hover:bg-gray-600 text-white rounded p-2 mr-2"
             onClick={onClose}
           >
             Cancel
           </button>
-        </form>
-      </div>
+          <button
+            type="submit"
+            className="bg-green-500 hover:bg-green-600 text-white rounded p-2"
+          >
+            Add
+          </button>
+        </div>
+      </form>
     </div>
   );
 };

@@ -1,15 +1,13 @@
 import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { TodoProvider } from "./contexts/TodoContext";
 
-const queryClient = new QueryClient();
+
 
 ReactDOM.render(
- 
-    <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-  ,
+  <TodoProvider>
+    <App />
+  </TodoProvider>,
   document.getElementById("root")
 );

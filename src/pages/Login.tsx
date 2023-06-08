@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import users from '../loginData.json';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import users from "../loginData.json";
 
 const Login: React.FC = () => {
   const [formValues, setFormValues] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('email')) {
-      navigate('/dashboard');
+    if (localStorage.getItem("email")) {
+      navigate("/dashboard");
     }
   }, [navigate]);
 
@@ -22,22 +22,23 @@ const Login: React.FC = () => {
   };
 
   const storeData = (email: string, password: string) => {
-    localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
     // localStorage.setItem("patient", "false");
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = users.find(
-      (user) => formValues.email === user.email && formValues.password === user.password
+      (user) =>
+        formValues.email === user.email && formValues.password === user.password
     );
 
     if (user) {
       storeData(user.email, user.password);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } else {
-      alert('Wrong email and password');
+      alert("Wrong email and password");
     }
   };
 
@@ -46,9 +47,15 @@ const Login: React.FC = () => {
       <div className="w-full max-w-md">
         <h2 className="text-3xl font-semibold text-center mb-6">Log in</h2>
 
-        <form className="bg-white rounded-lg shadow-md px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        <form
+          className="bg-white rounded-lg shadow-md px-8 pt-6 pb-8 mb-4"
+          onSubmit={handleSubmit}
+        >
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Email
             </label>
             <input
@@ -64,7 +71,10 @@ const Login: React.FC = () => {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Password
             </label>
             <input

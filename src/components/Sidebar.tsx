@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 
 const sidebar = () => {
   const Menus = [
-    { title: "Dashboard", path: "/dashboard", clickHandler: () =>{}},
-    { title: "logout", path: "/", clickHandler: () =>{ localStorage
-    .clear() }},
-
-    
+    { title: "Dashboard", path: "/dashboard", clickHandler: () => {} },
+    {
+      title: "logout",
+      path: "/",
+      clickHandler: () => {
+        localStorage.clear();
+      },
+    },
   ];
 
   return (
@@ -24,18 +27,18 @@ const sidebar = () => {
         </div>
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <Link to={Menu.path}
+            <Link
+              to={Menu.path}
               key={index}
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
             `}
-            onClick={Menu.clickHandler}
+              onClick={Menu.clickHandler}
             >
               <span className={` origin-left duration-200`}>{Menu.title}</span>
-            </Link >
+            </Link>
           ))}
         </ul>
       </div>
-  
     </div>
   );
 };
