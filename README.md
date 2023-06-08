@@ -2,7 +2,7 @@
 
 
 
-This is a contact management app with Charts and Maps using ReactJS, TypeScript, TailwindCSS, and React Router v6.
+This is a todo app using ReactJS, TypeScript, TailwindCSS, and React Router v6.
 ## Available Scripts
 
 In the project directory, you can run:
@@ -42,8 +42,8 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Features
 
-- Contact List: View, add, edit, and delete contacts.
-- Charts: Visualize COVID-19 cases fluctuations with line graphs.
+- Login:Login with user authentication.
+- Todo List With Dashboard: todo list with subtasks .
 - Feature 3
 
 ## Technologies Used
